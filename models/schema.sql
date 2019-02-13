@@ -1,5 +1,18 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+DROP DATABASE IF EXISTS trivia_db;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+CREATE DATABASE trivia_db;
+
+USE trivia_db;
+
+CREATE TABLE users
+(
+    id int NOT NULL
+    AUTO_INCREMENT,
+user_name VARCHAR
+    (300) NOT NULL,
+passwords VARCHAR
+    (300) NOT NULL,
+PRIMARY KEY
+    (id)
+);
+
