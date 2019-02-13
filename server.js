@@ -2,8 +2,6 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 
-var db = require("./models");
-
 var env = require('dotenv').load();
 
 var app = express();
@@ -70,7 +68,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
+models.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
@@ -80,7 +78,7 @@ db.sequelize.sync(syncOptions).then(function() {
   });
 });
 
-db.sequelize.sync().then(function(){
+models.sequelize.sync().then(function(){
   console.log('Nice! Database looks fine')
 }).catch(function(err){
   console.log(err, "Something went wrong with the Database Update!")
