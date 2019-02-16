@@ -16,3 +16,15 @@ PRIMARY KEY
     (id)
 );
 
+CREATE TABLE questions 
+(
+    id int NOT NULL
+    AUTO_INCREMENT,
+question VARCHAR
+    (300) NOT NULL,
+answer VARCHAR
+    (300) NOT NULL,
+PRIMARY KEY
+    (id)
+);
+

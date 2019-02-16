@@ -1,26 +1,33 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // Get a question
+  app.get("/api/question", function(req, res) {
+    db.trivia_db.findOne({}).then(function(trivia_db) {
+      let dbQuery = "SELECT * FROM questions";
+
+      connection.query(dbQuery, function(err, result) {
+        if (err) throw err;
+
+        res.json(trivia_db);
+      });
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
+  // Create a new user
+  app.post("/api/question", function(req, res) {
+    db.trivia_db.create(req.body).then(function(dbExample) {
       res.json(dbExample);
     });
   });
+}; //delete if bottom is un-commented
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-    });
-  });
-};
+// Delete an user by id
+//   app.delete("/api/examples/:id", function(req, res) {
+//     db.Example.destroy({ where: { id: req.params.id } }).then(function(
+//       dbExample
+//     ) {
+//       res.json(dbExample);
+//     });
+//   });
+// };
