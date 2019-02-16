@@ -1,8 +1,6 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-//var path = require("path");
-
 var db = require("./models");
 
 var app = express();
@@ -44,5 +42,4 @@ app.listen(PORT, function() {
   );
 });
 //});
-
 module.exports = app;
