@@ -12,13 +12,13 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
+      url: "api/end",
       data: JSON.stringify(example)
     });
   },
   getExamples: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/end",
       type: "GET"
     });
   },
@@ -65,11 +65,11 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    user_name: $exampleText.val().trim(),
+    wins: $exampleDescription.val().trim()
   };
 
-  if (!(example.text && example.description)) {
+  if (!(example.user_name && example.wins)) {
     alert("You must enter an example text and description!");
     return;
   }

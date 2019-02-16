@@ -1,36 +1,24 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get a question
-  app.get("/api/question", function(req, res) {
-    db.trivia_db.findOne({}).then(function(trivia_db) {
-      let dbQuery = "SELECT * FROM questions";
-
-      connection.query(dbQuery, function(err, result) {
-        if (err) throw err;
-
-        res.json(trivia_db);
-      });
+  // top score route
+  app.get("/api/end", function(req, res) {
+    console.log("get");
+    //get prarams
+    db.users.findAll({}).then(function(results) {
+      // if results includes params, then update
+      //else create with params
+      res.json(results);
+      console.log("Top score message " + results);
     });
+    // res.end();
   });
 
-  // Create a new user
-  app.post("/api/newUser", function(req, res) {
-    db.trivia_db.create(req.body).then(function(dbExample) {
-      let dbQuery = "INSERT INTO users (user_name, passwords) VALUES (?,?)";
-      if (err) throw err;
-      console.log("New user successfully added");
-      res.end();
+  // If a user sends data to add a new user...
+  app.post("/api/end", function(req, res) {
+    console.log("post");
+    db.users.create(req.body).then(function(dbExample) {
+      res.json(dbExample); // Take the request...
     });
   });
-}; //delete if bottom is un-commented
-
-// Delete an user by id
-//   app.delete("/api/examples/:id", function(req, res) {
-//     db.Example.destroy({ where: { id: req.params.id } }).then(function(
-//       dbExample
-//     ) {
-//       res.json(dbExample);
-//     });
-//   });
-// };
+};

@@ -1,17 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
-  var Questions = sequelize.define(
-    "Questions",
-    {
-      text: DataTypes.STRING,
-      description: DataTypes.TEXT
-    },
-    {
-      classMethods: {
-        associate: function(models) {
-          //associations defined here
-        }
-      }
-    }
-  );
-  return Questions;
+  var users = sequelize.define("users", {
+    user_name: DataTypes.STRING,
+    wins: DataTypes.TEXT
+  });
+  return users;
 };
