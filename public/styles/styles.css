@@ -1,3 +1,30 @@
-.list-group-item {
-  line-height: 2.5;
-}
+h1 
+  {
+    text-align: center;
+  } 
+
+.container 
+  {
+    text-align: center;
+  }
+#question_container 
+  {
+   background-color: grey;
+  }  
+body 
+  {
+  background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/GfRLKaE/videoblocks-clean-grey-background-motion_bujzrrdsz_thumbnail-full01.png");
+  }
+  #result_container 
+  {
+  padding-bottom: 30px;
+  background-color: grey;
+  border-style: ridge;
+  border-width: medium;
+  border-color: red;
+  }
+  #start_button 
+  {
+    color:red;
+  }
+
