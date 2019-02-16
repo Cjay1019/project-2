@@ -15,9 +15,12 @@ module.exports = function(app) {
   });
 
   // Create a new user
-  app.post("/api/question", function(req, res) {
+  app.post("/api/newUser", function(req, res) {
     db.trivia_db.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+      let dbQuery = "INSERT INTO users (user_name, passwords) VALUES (?,?)";
+      if (err) throw err;
+      console.log("New user successfully added");
+      res.end();
     });
   });
 }; //delete if bottom is un-commented
