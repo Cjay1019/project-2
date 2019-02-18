@@ -1,6 +1,20 @@
 var db = require("../models");
+const axios = require("axios");
 
 module.exports = function(app) {
+  //Start
+  app.get("/api/start", function(req, res) {
+    var questions;
+    var URL =
+      "https://opentdb.com/api.php?amount=10&category=9&difficulty=hard&type=multiple";
+    axios.get(URL).then(function(response) {
+      console.log(response.data);
+      questions = response.data;
+      console.log(questions);
+      res.json(questions);
+    });
+  });
+
   // top score route
   app.get("/api/end", function(req, res) {
     console.log("get");
