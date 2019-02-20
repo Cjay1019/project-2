@@ -1,5 +1,6 @@
 //var db = require("../models");
 var axios = require("axios");
+var questions = [];
 module.exports = function(app) {
   // Get all examples
   /*
@@ -17,7 +18,7 @@ module.exports = function(app) {
   });
 */
   //API Calls
-  app.get("/api/start", function(req, res) {
+  app.get("/api/questions", function(req, res) {
     var questions;
     var URL =
       "https://opentdb.com/api.php?amount=10&category=9&difficulty=hard&type=multiple";
@@ -26,6 +27,20 @@ module.exports = function(app) {
       questions = response.data;
       console.log(questions);
       res.json(questions);
+    });
+  });
+
+  app.get("/start", function(req, res) {
+    var URL = "http://localhost:3000/api/questions";
+    axios.get(URL).then(function(response) {
+      questions = response.data.results;
+      console.log(response.data.results[0].question);
+      res.json(questions);
+      /*
+      res
+        .render("index", "element-animation1 btn btn-lg btn-dark btn-block")
+        .text(response.results[0].questions);
+        */
     });
   });
 
