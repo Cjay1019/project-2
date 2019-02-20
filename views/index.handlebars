@@ -116,30 +116,103 @@
 <!--
 <div id="home">
   <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+    <h1 class="display-3">Trivia Game</h1>
+    <p class="lead"></p>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div id="player1"></div>
+      <h2>Player 1</h2>
+
+
+      <form action="">
+        Username:<br>
+        <input type="text" name="username" value="" id="username1">
+        <br>
+        Score:<br>
+        <input type="number" name="score" id="score1">
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <div class="container-fluid">
+        <div id="question_container">
+
+          <h1>What will be our teams first question?</h1>
+          <label class="element-animation1 btn btn-lg btn-dark btn-block"><span class="btn-label"><i
+                class="glyphicon glyphicon-chevron-right"></i></span>
+            <input type="radio" name="q_answer" value="1" id="answer1" />1 choice will go here</label>
+          <label class="element-animation2 btn btn-lg btn-dark btn-block"><span class="btn-label"><i
+                class="glyphicon glyphicon-chevron-right"></i></span>
+            <input type="radio" name="q_answer" value="2" id="answer2" />2 choice will go here</label>
+          <label class="element-animation3 btn btn-lg btn-dark btn-block"><span class="btn-label"><i
+                class="glyphicon glyphicon-chevron-right"></i></span>
+            <input type="radio" name="q_answer" value="3" id="answer3" />3 choice will go here</label>
+          <label class="element-animation4 btn btn-lg btn-dark btn-block"><span class="btn-label"><i
+                class="glyphicon glyphicon-chevron-right"></i></span>
+            <input type="radio" name="q_answer" value="4" id="answer4" />4 choice will go here</label>
+
+
+          <br>
+
+
+          <button id=submit_button>Submit Your Answer!</button> <br> <br>
+
+
+
+        </div>
+      </div>
+      <div class="">
+        <div id="result_container">
+          <h1>Game Over!! <br> The Results Are..</h1><br>
+          <h3>Player 1</h3>
+          <form action="">
+            Username:
+            <input type="text" name="username" value="" id="username1">
+
+            Final Score:
+            <input type="number" name="score" id="scorefinal1">
+          </form> <br>
+
+          <h3>Player 2</h3>
+          <form action="">
+            Username:
+            <input type="text" name="username" value="" id="username2">
+
+            Final Score:
+            <input type="number" name="score" id="scorefinal2">
+          </form>
+
+        </div>
+      </div>
+      <div class="waiting">
+        <div id="waiting_container"></div>
+        <h1> Waiting For Other Players To Connect</h1> <button id="start_button"
+          class="btn btn-dark btn-lg">Start</button> <br> <br>
+
+        <div class="tenor-gif-embed" data-postid="8119652" data-share-method="host" data-width="100%"
+          data-aspect-ratio="1.518987341772152"><a href="https://tenor.com/view/ck77-waiting-gif-8119652">Toddler Bored
+            GIF</a> from <a href="https://tenor.com/search/toddler-gifs">Toddler GIFs</a>
+          <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div id="player2">
+        <h2>Player 2</h2>
+        <form action="">
+          Username:<br>
+          <input type="text" name="firstname" value="">
+          <br>
+          Score:<br>
+          <input type="number" name="score">
       </div>
     </div>
   </div>
@@ -148,3 +221,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 -->
+</div>
+</div>
