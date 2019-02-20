@@ -1,12 +1,10 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$("#question_container").hide();
+$("#result_container").hide();
+//$(".waiting").hide();
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveUsers: function(example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -16,16 +14,10 @@ var API = {
       data: JSON.stringify(example)
     });
   },
-  getExamples: function() {
+  getUsers: function() {
     return $.ajax({
       url: "api/end",
       type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
     });
   }
 };
@@ -59,41 +51,58 @@ var refreshExamples = function() {
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
+//update with html tags ***************************************************
+var example = {
+  user_name: $username1.val().trim(),
+  wins: $score1.val().trim()
+};
 
-  var example = {
-    user_name: $exampleText.val().trim(),
-    wins: $exampleDescription.val().trim()
+if (!(example.user_name && example.wins)) {
+  alert("You must enter an example text and description!");
+  return;
+}
+
+API.saveExample(example).then(function() {
+  refreshExamples();
+});
+
+$("#submit_button").on("click", function() {
+  $("#question_container").hide();
+  $("#result_container").show();
+});
+
+// experimental checking to see if user exist in database, if not, create new user entry
+
+// Our initial current user array
+var currentUsers = [];
+
+// Getting current users from database when game ends
+getUsers();
+
+// This function grabs current users from the database and updates their wins
+function getUsers() {
+  $.get("/api/end", function(data) {
+    currentUsers = data;
+  });
+}
+
+// This function updates a todo in our database
+function updateUsers(currentUsers) {
+  $.ajax({
+    method: "PUT",
+    url: "/api/end",
+    data: currentUsers
+  }).then(getUsers);
+}
+
+// This function inserts a new todo into our database and then updates the view
+function newUser(user_name) {
+  user_name.preventDefault();
+  var newUser = {
+    text: $newUserInput.val().trim(),
+    complete: false
   };
 
-  if (!(example.user_name && example.wins)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+  $.post("/api/end", user_name, getUsers);
+  $newUserInput.val("");
+}

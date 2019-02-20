@@ -36,3 +36,37 @@ module.exports = function(app) {
     });
   });
 };
+
+// Our initial current user array
+var currentUsers = [];
+
+// Getting current users from database when game ends
+getUsers();
+
+// This function grabs current users from the database and updates their wins
+function getUsers() {
+  $.get("/api/end", function(data) {
+    currentUsers = data;
+  });
+}
+
+// This function updates a todo in our database
+function updateUsers(currentUsers) {
+  $.ajax({
+    method: "PUT",
+    url: "/api/end",
+    data: currentUsers
+  }).then(getUsers);
+}
+
+// This function inserts a new todo into our database and then updates the view
+function newUser(user_name) {
+  user_name.preventDefault();
+  var newUser = {
+    text: $newUserInput.val().trim(),
+    complete: false
+  };
+
+  $.post("/api/end", user_name, getUsers);
+  $newUserInput.val("");
+}
