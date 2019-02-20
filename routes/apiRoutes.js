@@ -21,7 +21,7 @@ module.exports = function(app) {
   app.get("/api/questions", function(req, res) {
     var questions;
     var URL =
-      "https://opentdb.com/api.php?amount=10&category=9&difficulty=hard&type=multiple";
+      "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";
     axios.get(URL).then(function(response) {
       console.log(response.data);
       questions = response.data;
