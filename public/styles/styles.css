@@ -39,7 +39,15 @@ form {
   padding-left: 8px;
   font-weight: bold;
   font-style: lucida;
+  padding-bottom: 15px;
+}
 
+.scores {
+  color: black;
+  padding-top: 10px;
+  padding-left: 8px;
+  font-weight: bold;
+  font-style: lucida;
   padding-bottom: 15px;
 }
 #waiter {
