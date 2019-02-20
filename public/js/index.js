@@ -1,6 +1,10 @@
 $("#question_container").hide();
 $("#result_container").hide();
 //$(".waiting").hide();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6cd2141147e46b4e4433b2ceec1b1ed49dc787fe
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -22,40 +26,22 @@ var API = {
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+$("#start_button").on("click", function() {
+  // Hide the waiting box
+  $(".waiting").hide();
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+  $("#question_container").show();
+});
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
+<<<<<<< HEAD
 //update with html tags ***************************************************
 var example = {
   user_name: $username1.val().trim(),
   wins: $score1.val().trim()
 };
+=======
+;
+>>>>>>> 6cd2141147e46b4e4433b2ceec1b1ed49dc787fe
 
 if (!(example.user_name && example.wins)) {
   alert("You must enter an example text and description!");
@@ -71,6 +57,7 @@ $("#submit_button").on("click", function() {
   $("#result_container").show();
 });
 
+<<<<<<< HEAD
 // experimental checking to see if user exist in database, if not, create new user entry
 
 // Our initial current user array
@@ -106,3 +93,10 @@ function newUser(user_name) {
   $.post("/api/end", user_name, getUsers);
   $newUserInput.val("");
 }
+=======
+
+$("#submit_button").on("click", function() {
+  $("#question_container").hide();
+  $("#result_container").show();
+});
+>>>>>>> 6cd2141147e46b4e4433b2ceec1b1ed49dc787fe

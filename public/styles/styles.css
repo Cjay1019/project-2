@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 h1 {
   text-align: center;
   padding-bottom: 10px;
@@ -66,3 +67,35 @@ input {
 btn-label {
   border: 2px solid #1c6ea4;
 }
+=======
+h1 
+  {
+    text-align: center;
+  } 
+
+.container 
+  {
+    text-align: center;
+  }
+#question_container 
+  {
+   background-color: grey;
+  }  
+body 
+  {
+  background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/GfRLKaE/videoblocks-clean-grey-background-motion_bujzrrdsz_thumbnail-full01.png");
+  }
+  #result_container 
+  {
+  padding-bottom: 30px;
+  background-color: grey;
+  border-style: ridge;
+  border-width: medium;
+  border-color: red;
+  }
+  #start_button 
+  {
+    color:red;
+  }
+
+>>>>>>> 6cd2141147e46b4e4433b2ceec1b1ed49dc787fe
