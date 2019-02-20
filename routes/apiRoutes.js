@@ -1,6 +1,5 @@
 var db = require("../models");
 const axios = require("axios");
-
 module.exports = function(app) {
   //Start
   app.get("/api/start", function(req, res) {
@@ -12,6 +11,7 @@ module.exports = function(app) {
       questions = response.data;
       console.log(questions);
       res.json(questions);
+
     });
   });
 
