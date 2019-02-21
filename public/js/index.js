@@ -36,10 +36,14 @@ $(function() {
     $("#question_container").hide();
     $("#result_container").show();
     $(".waiting").hide();
+    $("#player2").hide();
+    $("#player1").hide();
+    $("#winner").append(clientName + "!");
   });
   // Alex's Question logic
   var questions = [];
   var questionNum = 0;
+  var player1Turn = true;
 
   $("#start_button").on("click", function() {
     $.get("/start", function(response) {
@@ -90,7 +94,9 @@ $(function() {
 
   $("#submit_button").on("click", function() {
     var radioValue = $("input[name='q_answer']:checked").val();
-    var selectedAnswer = $("#a" + radioValue).text();
+    var selectedAnswer = $("#a" + radioValue)
+      .text()
+      .trim();
     var answerData = {
       player: playerNumber,
       result: null
@@ -108,11 +114,18 @@ $(function() {
   });
 
   socket.on("submit", function(result) {
-    $("#score1").text(result.player1);
-    $("#score2").text(result.player2);
+    $("#submit_button").hide();
+    player1Turn = !player1Turn;
+    questionNum = result.questionNum;
+    $(".score1").text(result.player1);
+    $(".score2").text(result.player2);
+    if (player1Turn === true && playerNumber === 1) {
+      $("#submit_button").show();
+    } else if (player1Turn === false && playerNumber === 2) {
+      $("#submit_button").show();
+    }
     //Goes to next question if the index of the question array is less than 9
     if (questionNum < 9) {
-      questionNum++;
       $("#question").text(decode(questions[questionNum].question));
       randomChoiceOrder = Math.floor(Math.random() * 4);
       switch (randomChoiceOrder) {
@@ -142,20 +155,21 @@ $(function() {
           break;
       }
     } else {
-      //ends the game
-      var radioValue = $("input[name='q_answer']:checked").val();
-      var selectedAnswer = $("#a" + radioValue).text();
-      if (selectedAnswer === decode(questions[questionNum].correct_answer)) {
-        console.log("You Are Right");
-        $("#score").text("Your Final Score: " + numRight);
-        $("#num-wrong").text("Number of Wrong Answers: " + numWrong);
+      $("#question_container").hide();
+      $("#result_container").show();
+      $("#player2").hide();
+      $("#player1").hide();
+      if (result.player1 > result.player2) {
+        $("#winner").append(result.players[0] + "!");
+      } else if (result.player1 < result.player2) {
+        $("#winner").append(result.players[1]) + "!";
       } else {
-        numWrong++;
-        console.log("You Are Wrong");
-        $("#score").text("Your Final Score: " + numRight);
-        $("#num-wrong").text("Number of Wrong Answers: " + numWrong);
+        $("#winner").append("It's a tie!");
       }
+      $(".score1").text(result.player1);
+      $(".score2").text(result.player2);
     }
+    console.log(result);
   });
 
   function decode(html) {

@@ -1,41 +1,42 @@
 var sockets = function(io) {
-  var players = [];
-  var player1Turn = true;
-  var scores = {
+  var gameData = {
     player1: 0,
-    player2: 0
+    player2: 0,
+    questionNum: 0,
+    players: []
   };
   io.on("connection", function(socket) {
     console.log("user connected");
     socket.on("new name", function(name) {
-      players.push(name);
-      io.emit("new name", players);
+      gameData.players.push(name);
+      io.emit("new name", gameData.players);
     });
     socket.on("start", function(questions) {
       io.emit("start", questions);
     });
     socket.on("submit", function(data) {
+      gameData.questionNum++;
       switch (data.player) {
         case 1:
           if (data.result === "right") {
-            scores.player1++;
+            gameData.player1++;
           }
           break;
         case 2:
           if (data.result === "right") {
-            scores.player2++;
+            gameData.player2++;
           }
           break;
       }
-      io.emit("submit", scores);
+      io.emit("submit", gameData);
     });
     socket.on("disconnect", function() {
       console.log("user disconnected");
-      players = [];
-      player1Turn = true;
       scores = {
         player1: 0,
-        player2: 0
+        player2: 0,
+        questionNum: 0,
+        players: []
       };
       io.emit("disconnect");
     });
