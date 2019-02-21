@@ -30,8 +30,8 @@ $(function() {
     $("#result_container").show();
     $(".waiting").hide();
   });
+  //todd------------------------------------------------------------------------------------------
 
-  // The API object contains methods for each kind of request we'll make
   var API = {
     saveExample: function(example) {
       return $.ajax({
@@ -39,23 +39,43 @@ $(function() {
           "Content-Type": "application/json"
         },
         type: "POST",
-        url: "api/end",
+        url: "api/examples",
         data: JSON.stringify(example)
       });
     },
     getExamples: function() {
       return $.ajax({
-        url: "api/end",
+        url: "api/examples",
         type: "GET"
       });
-    },
-    deleteExample: function(id) {
-      return $.ajax({
-        url: "api/examples/" + id,
-        type: "DELETE"
-      });
     }
-  };
+
+  //i think i need to format these two like the above examples?
+
+  // This function updates a user in our database
+  function updateUsers(currentUsers) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/end",
+      data: currentUsers
+    }).then(getUsers);
+  }
+
+  // This function inserts a new user into our database and then updates the view
+  function newUser(user_name) {
+    user_name.preventDefault();
+    var newUser = {
+      text: $("names[0]")
+        .val()
+        .trim(),
+      complete: false
+    };
+
+    $.post("/api/end", user_name, getUsers);
+    $("newUserInput").val("");
+  }
+  
+  //---------------------------------------------------------------------------------------------
 
   $("#start_button").on("click", function() {
     // Hide the waiting box
