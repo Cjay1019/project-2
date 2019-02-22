@@ -57,9 +57,13 @@ h2 {
   color: red;
   text-shadow: 1px 1px black;
   font-weight: bold;
-  /* color: #FFF;
-background-color: #232323;
-text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 55px red, 0 0 75px red*/
+}
+
+.active {
+  color: #fff;
+  background-color: #232323;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px red,
+    0 0 30px red, 0 0 40px red, 0 0 55px red, 0 0 75px red;
 }
 
 .results {

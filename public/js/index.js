@@ -54,6 +54,7 @@ $(function() {
   });
 
   socket.on("start", function(response) {
+    $("#user1").attr({ class: "username1 active" });
     questions = response;
     console.log(questions);
     if (playerNumber !== 1) {
@@ -119,6 +120,13 @@ $(function() {
     questionNum = result.questionNum;
     $(".score1").text(result.player1);
     $(".score2").text(result.player2);
+    if (player1Turn === true) {
+      $("#user1").attr({ class: "username1 active" });
+      $("#user2").attr({ class: "username2" });
+    } else {
+      $("#user1").attr({ class: "username1" });
+      $("#user2").attr({ class: "username2 active" });
+    }
     if (player1Turn === true && playerNumber === 1) {
       $("#submit_button").show();
     } else if (player1Turn === false && playerNumber === 2) {
