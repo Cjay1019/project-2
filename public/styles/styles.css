@@ -1,0 +1,77 @@
+\ h1 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+.container {
+  text-align: center;
+}
+#question_container {
+  background-image: url("https://img.pixers.pics/pho_wat(s3:700/FO/62/69/05/85/700_FO62690585_a4c29f6960856651f89f21c0fffa2f12.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/wall-murals-nice-white-and-grey-background.jpg.jpg");
+  display: none;
+
+  padding-left: 10px;
+  padding-right: 10px;
+}
+body {
+  background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/GfRLKaE/videoblocks-clean-grey-background-motion_bujzrrdsz_thumbnail-full01.png");
+}
+#result_container {
+  padding-bottom: 70px;
+  background-image: url("https://img.pixers.pics/pho_wat(s3:700/FO/62/69/05/85/700_FO62690585_a4c29f6960856651f89f21c0fffa2f12.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/wall-murals-nice-white-and-grey-background.jpg.jpg");
+  display: none;
+}
+#start_button {
+  color: red;
+  display: none;
+}
+#submit_button {
+  color: red;
+  font-weight: bold;
+}
+.display-3 {
+  color: red;
+  text-shadow: 2px 2px black;
+  font-weight: bold;
+}
+form {
+  color: black;
+  padding-top: 10px;
+  padding-left: 8px;
+  font-weight: bold;
+  font-style: lucida;
+  padding-bottom: 15px;
+}
+
+.scores {
+  color: black;
+  padding-top: 10px;
+  padding-left: 8px;
+  font-weight: bold;
+  font-style: lucida;
+  padding-bottom: 15px;
+}
+#waiter {
+  font-size: 30px;
+}
+h2 {
+  color: red;
+  text-shadow: 1px 1px black;
+  font-weight: bold;
+}
+
+.active {
+  color: #fff;
+  background-color: #232323;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px red,
+    0 0 30px red, 0 0 40px red, 0 0 55px red, 0 0 75px red;
+}
+
+.results {
+  font: 30px;
+}
+h3 {
+  text-decoration: underline solid red;
+}
+input {
+  border: red;
+}
