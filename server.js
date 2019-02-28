@@ -36,13 +36,13 @@ if (process.env.NODE_ENV === "test") {
 require("./connections/connections.js")(io);
 
 // Starting the server, syncing our models ------------------------------------/
-//db.sequelize.sync(syncOptions).then(function() {
-http.listen(PORT, function() {
-  console.log(
-    "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-    PORT,
-    PORT
-  );
+db.sequelize.sync(syncOptions).then(function() {
+  http.listen(PORT, function() {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
+  });
 });
-//});
 module.exports = app;
