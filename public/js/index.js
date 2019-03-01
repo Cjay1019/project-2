@@ -57,7 +57,7 @@ $(function() {
   var player1Turn = true;
 
   $("#start_button").on("click", function() {
-    $.get("/start", function(response) {
+    $.get("/api/questions", function(response) {
       questionNum = 0;
       questions = response;
       socket.emit("start", questions);
@@ -68,7 +68,6 @@ $(function() {
     gameCompleted = false;
     $("#user1").attr({ class: "username1 active" });
     questions = response;
-    console.log(questions);
     if (playerNumber !== 1) {
       $("#submit_button").hide();
     }
@@ -114,13 +113,9 @@ $(function() {
       player: playerNumber,
       result: null
     };
-    console.log(selectedAnswer);
-    console.log(decode(questions[questionNum].correct_answer));
     if (selectedAnswer === decode(questions[questionNum].correct_answer)) {
-      console.log("You Are Right");
       answerData.result = "right";
     } else {
-      console.log("You Are Wrong");
       answerData.result = "wrong";
     }
     socket.emit("submit", answerData);
