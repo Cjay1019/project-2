@@ -8,7 +8,7 @@ module.exports = function(app) {
     var URL =
       "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple";
     axios.get(URL).then(function(response) {
-      questions = response.data;
+      questions = response.data.results;
       res.json(questions);
     });
   });
@@ -45,11 +45,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/start", function(req, res) {
-    var URL = "http://localhost:3000/api/questions";
-    axios.get(URL).then(function(response) {
-      questions = response.data.results;
-      res.json(questions);
-    });
-  });
+  // app.get("/start", function(req, res) {
+  //   var URL = "http://localhost:3000/api/questions";
+  //   axios.get(URL).then(function(response) {
+  //     questions = response.data.results;
+  //     res.json(questions);
+  //   });
+  // });
 };
