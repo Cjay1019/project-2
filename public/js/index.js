@@ -3,6 +3,7 @@ $(function() {
 
   var clientName;
   var playerNumber = null;
+  var gameCompleted = null;
 
   function userNames() {
     var name = prompt("Enter a username");
@@ -34,12 +35,21 @@ $(function() {
   });
 
   socket.on("disconnect", function() {
-    $("#question_container").hide();
-    $("#result_container").show();
-    $(".waiting").hide();
-    $("#player2").hide();
-    $("#player1").hide();
-    $("#winner").append(clientName + "!");
+    if (gameCompleted === false) {
+      winner = { user_name: clientName };
+      $("#question_container").hide();
+      $("#result_container").show();
+      $(".waiting").hide();
+      $("#player2").hide();
+      $("#player1").hide();
+      $("#winner").append(clientName + "!");
+      $.post("/api/end", winner).then(function(data) {
+        leaders(data);
+      });
+      gameOver();
+    } else if (gameCompleted === null) {
+      location.reload();
+    }
   });
   // Alex's Question logic
   var questions = [];
@@ -55,6 +65,7 @@ $(function() {
   });
 
   socket.on("start", function(response) {
+    gameCompleted = false;
     $("#user1").attr({ class: "username1 active" });
     questions = response;
     console.log(questions);
@@ -164,22 +175,53 @@ $(function() {
           break;
       }
     } else {
+      var winner;
       $("#question_container").hide();
       $("#result_container").show();
       $("#player2").hide();
       $("#player1").hide();
       if (result.player1 > result.player2) {
         $("#winner").append(result.players[0] + "!");
+        winner = { user_name: result.players[0], wins: 1 };
       } else if (result.player1 < result.player2) {
         $("#winner").append(result.players[1]) + "!";
+        winner = { user_name: result.players[1], wins: 1 };
       } else {
         $("#winner").append("It's a tie!");
+        winner = { user_name: "tie" };
       }
       $(".score1").text(result.player1);
       $(".score2").text(result.player2);
+      if (winner.user_name === clientName) {
+        $.post("/api/end", winner).then(function(data) {
+          leaders(data);
+        });
+      }
+      gameOver();
     }
-    console.log(result);
   });
+
+  function gameOver() {
+    gameCompleted = true;
+    clientName = null;
+    playerNumber = null;
+    questions = [];
+    questionNum = null;
+    player1Turn = null;
+  }
+
+  function leaders(data) {
+    $("#lp1").text(data[0].user_name);
+    $("#ls1").text(data[0].wins);
+    $("#lp2").text(data[1].user_name);
+    $("#ls2").text(data[1].wins);
+    $("#lp3").text(data[2].user_name);
+    $("#ls3").text(data[2].wins);
+    $("#lp4").text(data[3].user_name);
+    $("#ls4").text(data[3].wins);
+    $("#lp5").text(data[4].user_name);
+    $("#ls5").text(data[4].wins);
+  }
 
   function decode(html) {
     var txt = document.createElement("textarea");

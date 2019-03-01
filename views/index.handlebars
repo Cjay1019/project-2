@@ -35,15 +35,45 @@
             <button id="submit_button">Submit Your Answer!</button> <br> <br>
           </div>
         </div>
-        <div class="">
+        <div>
           <div id="result_container">
-            <h1 class=results> Game Over!! <br> The Results Are..</h1><br>
+            <h1 class="results"> Game Over!! <br> The Results Are..</h1><br>
             <h3 class="username1">Player 1</h3>
-            <p class="scores">Score: <span class="score1"></span></p> <br>
+            <p class="scores">Score: <span class="score1">0</span></p> <br>
             <h3 class="username2">Player 2</h3>
-            <p class="scores">Score: <span class="score2"></span></p>
+            <p class="scores">Score: <span class="score2">0</span></p>
             <h3 id="winner">Winner: </h3>
+            <br>
+            <div id="leaderboard">
+              <table class="m-auto">
+                <tr>
+                  <th class="h3">Player </th>
+                  <th class="h3">Wins</th>
+                </tr>
+                <tr>
+                  <td class="h4" id="lp1"></td>
+                  <td class="h4" id="ls1"></td>
+                </tr>
+                <tr>
+                  <td class="h4" id="lp2"></td>
+                  <td class="h4" id="ls2"></td>
+                </tr>
+                <tr>
+                  <td class="h4" id="lp3"></td>
+                  <td class="h4" id="ls3"></td>
+                </tr>
+                <tr>
+                  <td class="h4" id="lp4"></td>
+                  <td class="h4" id="ls4"></td>
+                </tr>
+                <tr>
+                  <td class="h4" id="lp5"></td>
+                  <td class="h4" id="ls5"></td>
+                </tr>
+              </table>
+            </div>
           </div>
+
         </div>
         <div class="waiting">
           <div id="waiting_container"></div>
