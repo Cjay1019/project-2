@@ -1,13 +1,13 @@
 # Group Project 2 
 
-Alex Mesa 
-Conner Leigh 
-Keiran Hamilton 
+Alex Mesa, 
+Conner Leigh,
+Keiran Hamilton,
 Todd Williams
 
 We created a multiplayer trivia game allowing two people to play against each other from separate devices.
-We used Axios to make our API calls that supplied us with  the random questions for our game. We then used socket
-IO to handle our multi player functions, live updates of user inputs, and  to keep track of the games connections.
+We used Axios to make our API calls and it supplied us with  the random questions for our game. We then used socket
+IO to handle our multi player functions, updates of user inputs, and to keeps track of the games connections.
 
 ## Technologies/Tools Used 
 
@@ -20,7 +20,7 @@ IO to handle our multi player functions, live updates of user inputs, and  to ke
 * Heroku
 * Axios
 * Sockets
-*Bootstrap
+* Bootstrap
 
 ## Stretch Goals
 
